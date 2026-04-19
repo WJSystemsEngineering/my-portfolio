@@ -2,7 +2,11 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ] # mainブランチにプッシュされたら実行
+    branches: [ "main" ]
+
+# ここに環境変数を追加して、Node.js 24への移行を先取りします
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read
@@ -13,17 +17,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 # v4でも動きますが、最新に合わせるならそのまま
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24 # ここを20から24に変更
           cache: 'npm'
       - run: npm ci
       - run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist # Viteのビルド成果物が入るフォルダ
+          path: ./dist
 
   deploy:
     needs: build
