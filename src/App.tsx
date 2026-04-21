@@ -6,8 +6,7 @@ import {
   Code2, 
   Layers, 
   Cpu, 
-  Globe, 
-  ChevronRight
+  Globe
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -131,7 +130,7 @@ export default function App() {
               <span className="tech-label">User_Profile</span>
               <h2 className="text-4xl font-bold uppercase tracking-tighter">About_Me</h2>
               <p className="text-base text-muted-foreground leading-relaxed font-mono max-w-2xl mx-auto">
-                10年以上の開発経験。フロントエンドからインフラまで、
+                5年以上の開発経験。フロントエンドからインフラまで、
                 一気通貫での開発と最適な技術選定を得意としています。
                 複雑なシステムをシンプルに、そして確実なものへと変換するのが私の使命です。
               </p>
