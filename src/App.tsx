@@ -150,20 +150,6 @@ export default function App() {
                 ))}
               </div>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="max-w-xl w-full aspect-video border border-border/20 overflow-hidden grayscale contrast-125 relative group bg-muted"
-            >
-              <img 
-                src="https://picsum.photos/seed/tech-engineer/800/800" 
-                alt="Profile" 
-                className="w-full h-full object-cover opacity-80 transition-opacity group-hover:opacity-100"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-primary/5 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity" />
-            </motion.div>
           </div>
         </section>
 
