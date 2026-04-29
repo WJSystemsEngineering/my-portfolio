@@ -1,13 +1,12 @@
 import { motion } from "motion/react";
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Code2, 
-  Layers, 
-  Cpu, 
+import {
+  Mail,
+  Code2,
+  Layers,
+  Cpu,
   Globe
 } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -26,10 +25,10 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 const techStack = [
-  { name: "Frontend", icon: <Globe className="w-5 h-5 text-primary" />, items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
-  { name: "Backend", icon: <Cpu className="w-5 h-5 text-primary" />, items: ["Node.js", "Express", "Go", "PostgreSQL"] },
-  { name: "Infrastructure", icon: <Layers className="w-5 h-5 text-primary" />, items: ["AWS", "Docker", "Terraform", "Vercel"] },
-  { name: "AI/ML", icon: <Code2 className="w-5 h-5 text-primary" />, items: ["Gemini API", "OpenAI", "LangChain"] },
+  { name: "Frontend", icon: <Globe className="w-5 h-5 text-primary" />, items: ["HTML", "JavaScript", "CSS"] },
+  { name: "Backend", icon: <Cpu className="w-5 h-5 text-primary" />, items: ["Java/SpringBoot", "PHP", "Oracle", "MySQL"] },
+  { name: "Infrastructure", icon: <Layers className="w-5 h-5 text-primary" />, items: ["AWS"] },
+  { name: "AI/ML", icon: <Code2 className="w-5 h-5 text-primary" />, items: ["Gemini API", "OpenAI", "Claude"] },
 ];
 
 export default function App() {
@@ -104,7 +103,7 @@ export default function App() {
               <span className="text-primary">ENGINEERING</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-12 font-mono">
-              &gt; フルスタックエンジニアとして、スケーラブルで堅牢なアーキテクチャを構築します。
+              &gt; フリーランスエンジニアとして活動しています。<br />
               モダンな技術スタックと精密な設計で、ビジネスの課題をコードで解決します。
             </p>
             <div className="flex flex-wrap gap-6 justify-center">
@@ -130,17 +129,21 @@ export default function App() {
               <span className="tech-label">User_Profile</span>
               <h2 className="text-4xl font-bold uppercase tracking-tighter">About_Me</h2>
               <p className="text-base text-muted-foreground leading-relaxed font-mono max-w-2xl mx-auto">
-                5年以上の開発経験。フロントエンドからインフラまで、
-                一気通貫での開発と最適な技術選定を得意としています。
+                5年以上のWEBシステム開発経験。Java/SpringBootがメインでの開発が得意です。<br />
+                AWSやフロントも対応可能、その都度必要な技術習得を行っています。<br />
                 複雑なシステムをシンプルに、そして確実なものへと変換するのが私の使命です。
               </p>
               <div className="flex justify-center gap-12 py-8 border-y border-border/10">
                 {[
-                  { icon: <Github className="w-6 h-6" />, label: "GitHub" },
-                  { icon: <Linkedin className="w-6 h-6" />, label: "LinkedIn" },
-                  { icon: <Mail className="w-6 h-6" />, label: "Mail" }
+                  { icon: <FaGithub size={24} />, label: "GitHub", href: "https://github.com/WJSystemsEngineering", external: true },
+                  { icon: <Mail className="w-6 h-6" />, label: "Mail", href: "#contact", external: false }
                 ].map((social) => (
-                  <a key={social.label} href="#" className="text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-2 group">
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="text-muted-foreground hover:text-primary transition-colors flex flex-col items-center gap-2 group"
+                  >
                     {social.icon}
                     <span className="text-[10px] font-bold tracking-widest uppercase opacity-40 group-hover:opacity-100 transition-opacity">{social.label}</span>
                   </a>
@@ -192,18 +195,30 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-24 px-6 sm:px-12 bg-muted/10">
-          <div className="max-w-4xl mx-auto">
+        <section id="contact" className="py-24 px-6 sm:px-12 bg-muted/10 relative">
+          {/* Coming Soon Overlay */}
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm">
+            <span className="tech-label mb-4">Module_Status</span>
+            <p className="text-3xl font-bold uppercase tracking-[0.3em] font-mono text-muted-foreground">
+              COMING_SOON
+            </p>
+            <p className="text-[11px] font-mono text-muted-foreground/50 mt-4 tracking-widest">
+              // THIS_MODULE_IS_UNDER_CONSTRUCTION
+            </p>
+          </div>
+
+          {/* Grayed out content */}
+          <div className="max-w-4xl mx-auto opacity-20 pointer-events-none select-none">
             <div className="text-center mb-16 space-y-4">
               <span className="tech-label inline-flex">Communication_Channel</span>
               <h2 className="text-4xl font-bold uppercase tracking-tighter">Establish_Contact</h2>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
               <div className="lg:col-span-1 space-y-8">
                 <div className="space-y-4 pt-4 border-t border-border/10">
                   <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Availability</p>
-                  <p className="text-sm font-mono text-primary animate-pulse flex items-center gap-2">
+                  <p className="text-sm font-mono text-primary flex items-center gap-2">
                     <span className="w-2 h-2 bg-primary rounded-full" />
                     OPEN_FOR_NEW_PROJECTS
                   </p>
@@ -215,45 +230,25 @@ export default function App() {
               </div>
 
               <div className="lg:col-span-2">
-                <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80">Sender_Name</Label>
-                    <Input 
-                      id="name" 
-                      placeholder="NAME_REQUIRED" 
-                      {...register("name")}
-                      className="bg-background border-border/20 focus:border-primary focus:ring-primary/10 rounded-none h-12 text-xs font-mono transition-all"
-                    />
-                    {errors.name && <p className="text-[9px] text-destructive font-mono mt-1">{errors.name.message}</p>}
+                    <Label className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80">Sender_Name</Label>
+                    <Input placeholder="NAME_REQUIRED" className="bg-background border-border/20 rounded-none h-12 text-xs font-mono" disabled />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80">Sender_Email</Label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="EMAIL_REQUIRED" 
-                      {...register("email")}
-                      className="bg-background border-border/20 focus:border-primary focus:ring-primary/10 rounded-none h-12 text-xs font-mono transition-all"
-                    />
-                    {errors.email && <p className="text-[9px] text-destructive font-mono mt-1">{errors.email.message}</p>}
+                    <Label className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80">Sender_Email</Label>
+                    <Input placeholder="EMAIL_REQUIRED" className="bg-background border-border/20 rounded-none h-12 text-xs font-mono" disabled />
                   </div>
                   <div className="space-y-2 sm:col-span-2">
-                    <Label htmlFor="message" className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80">Message_Payload</Label>
-                    <Textarea 
-                      id="message" 
-                      placeholder="INPUT_MESSAGE_DATA..." 
-                      rows={6}
-                      {...register("message")}
-                      className="bg-background border-border/20 focus:border-primary focus:ring-primary/10 rounded-none text-xs font-mono resize-none transition-all"
-                    />
-                    {errors.message && <p className="text-[9px] text-destructive font-mono mt-1">{errors.message.message}</p>}
+                    <Label className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground/80">Message_Payload</Label>
+                    <Textarea placeholder="INPUT_MESSAGE_DATA..." rows={6} className="bg-background border-border/20 rounded-none text-xs font-mono resize-none" disabled />
                   </div>
                   <div className="sm:col-span-2">
-                    <Button type="submit" className="w-full h-14 bg-primary text-primary-foreground font-bold uppercase tracking-[0.3em] text-[11px] rounded-none hover:bg-foreground transition-all hover:tracking-[0.4em]" disabled={isSubmitting}>
-                      {isSubmitting ? "TRANSMITTING..." : "SEND_MESSAGE"}
+                    <Button disabled className="w-full h-14 bg-primary text-primary-foreground font-bold uppercase tracking-[0.3em] text-[11px] rounded-none">
+                      SEND_MESSAGE
                     </Button>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
